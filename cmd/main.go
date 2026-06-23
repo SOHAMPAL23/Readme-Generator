@@ -55,8 +55,8 @@ func main() {
 	r.Use(corsMiddleware())
 
 	// Static files
-	r.Static("/static", "./public/static")
-	r.StaticFile("/", "./public/index.html")
+	r.Static("/static", "./static")
+	r.StaticFile("/", "./index.html")
 
 	// Rate limiter: 15 requests per minute per IP
 	limiter := newIPRateLimiter(rate.Every(time.Minute/15), 5)
