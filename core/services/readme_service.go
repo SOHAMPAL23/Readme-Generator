@@ -144,6 +144,16 @@ func (s *ReadmeService) fetchAndAnalyze(owner, repo string) (*models.AnalysisRes
 	// Analyze file structure and dependencies
 	keyFiles, fileTree, depFiles, techStack := s.analyzer.Analyze(owner, repo, branch)
 
+	// Inject languages into the TechStack so the AI always sees them
+	if repoInfo.PrimaryLanguage != "" {
+		techStack.Languages = append(techStack.Languages, repoInfo.PrimaryLanguage)
+	}
+	for lang := range repoInfo.LanguagesPercent {
+		if lang != repoInfo.PrimaryLanguage {
+			techStack.Languages = append(techStack.Languages, lang)
+		}
+	}
+
 	// Check for README existence
 	repoInfo.HasReadme = hasReadme(keyFiles)
 

@@ -144,11 +144,11 @@ func buildUserPrompt(analysis *models.AnalysisResult, style models.ReadmeStyle) 
 	sb.WriteString(`
 ## Required README Sections
 Generate a complete README.md with these sections (adapt based on available data):
-1. Badges (shields.io) — language, license, stars, last commit
+1. Badges (shields.io) — Must include the Primary Language badge, license, stars, and last commit
 2. Project title and one-line tagline
-3. Overview / About
+3. Overview / About (Mention the Primary Language prominently)
 4. Features list (infer from tech stack and description)
-5. Tech Stack (with icons if possible using simple-icons or devicons CDN links)
+5. Tech Stack (Must explicitly list the Primary Language and any frameworks detected)
 6. Architecture (describe based on detected stack)
 7. Installation & Setup
 8. Environment Variables (table format if detected)
