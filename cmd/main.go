@@ -55,16 +55,13 @@ func main() {
 	r.Use(corsMiddleware())
 
 	// Static files
-	r.Static("/static", "./web/static")
-	r.LoadHTMLGlob("./web/templates/*")
+	r.Static("/static", "./public/static")
+	r.StaticFile("/", "./public/index.html")
 
 	// Rate limiter: 15 requests per minute per IP
 	limiter := newIPRateLimiter(rate.Every(time.Minute/15), 5)
 
-	// Routes
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{})
-	})
+
 
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
