@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"readmeai/internal/models"
+	"readmeai/core/models"
 )
 
 // BuildPrompt constructs a structured prompt for the OpenAI API based on style.

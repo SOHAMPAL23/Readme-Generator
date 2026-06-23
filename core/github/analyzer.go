@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"readmeai/internal/models"
+	"readmeai/core/models"
 )
 
 // Analyzer detects technologies from repo file contents and dependency files.

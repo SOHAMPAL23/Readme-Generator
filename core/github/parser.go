@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"readmeai/internal/models"
+	"readmeai/core/models"
 )
 
 // ParseRepoInfo maps the raw GitHub API JSON to a RepoInfo model.

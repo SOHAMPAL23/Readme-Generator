@@ -6,10 +6,10 @@ import (
 	"sync"
 	"time"
 
-	githubclient "readmeai/internal/github"
-	"readmeai/internal/ai"
-	"readmeai/internal/models"
-	"readmeai/internal/utils"
+	githubclient "readmeai/core/github"
+	"readmeai/core/ai"
+	"readmeai/core/models"
+	"readmeai/core/utils"
 )
 
 // ReadmeService orchestrates the full pipeline: GitHub → Analyze → AI → Response.

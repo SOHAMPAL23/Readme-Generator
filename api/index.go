@@ -9,9 +9,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/time/rate"
 
-	"readmeai/internal/handlers"
-	"readmeai/internal/models"
-	"readmeai/internal/services"
+	"readmeai/core/handlers"
+	"readmeai/core/models"
+	"readmeai/core/services"
 )
 
 var app *gin.Engine

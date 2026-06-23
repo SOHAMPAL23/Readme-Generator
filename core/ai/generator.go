@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"readmeai/internal/models"
+	"readmeai/core/models"
 )
 
 const openAIURL = "https://api.openai.com/v1/chat/completions"

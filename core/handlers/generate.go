@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"readmeai/internal/models"
-	"readmeai/internal/services"
+	"readmeai/core/models"
+	"readmeai/core/services"
 )
 
 // GenerateHandler handles POST /api/generate

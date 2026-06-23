@@ -11,9 +11,9 @@ import (
 	"github.com/joho/godotenv"
 	"golang.org/x/time/rate"
 
-	"readmeai/internal/handlers"
-	"readmeai/internal/models"
-	"readmeai/internal/services"
+	"readmeai/core/handlers"
+	"readmeai/core/models"
+	"readmeai/core/services"
 )
 
 func main() {
