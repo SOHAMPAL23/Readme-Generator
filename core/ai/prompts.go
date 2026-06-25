@@ -20,7 +20,9 @@ func buildSystemPrompt(style models.ReadmeStyle) string {
 Your task is to generate a high-quality, complete README.md file based on the provided repository analysis data.
 
 CRITICAL RULES:
-- Only use technologies and facts provided in the analysis — do NOT invent features
+- ONLY use technologies, languages, and facts provided in the analysis data — do NOT invent features or assume tech stacks.
+- NEVER mention or include badges for technologies (like Python, React, Node.js, etc.) unless they are EXPLICITLY listed in the "Detected Tech Stack" or "Language Breakdown".
+- If a technology is not in the provided analysis, it DOES NOT EXIST in this project. Do not generate generic steps for it.
 - Use proper Markdown formatting with headers, code blocks, tables, and badges
 - Include working badge URLs from shields.io where applicable
 - In shields.io badge URLs, any percentage symbol (%) must be written as %25 (e.g. HTML-58.1%25-orange)
@@ -144,13 +146,13 @@ func buildUserPrompt(analysis *models.AnalysisResult, style models.ReadmeStyle) 
 	sb.WriteString(`
 ## Required README Sections
 Generate a complete README.md with these sections (adapt based on available data):
-1. Badges (shields.io) — Must include the Primary Language badge, license, stars, and last commit
+1. Badges (shields.io) — Must include the Primary Language badge, license, stars, and last commit. ONLY include tech stack badges if they are explicitly listed in the tech stack data above.
 2. Project title and one-line tagline
 3. Overview / About (Mention the Primary Language prominently)
 4. Features list (infer from tech stack and description)
-5. Tech Stack (Must explicitly list the Primary Language and any frameworks detected)
+5. Tech Stack (Must explicitly list the Primary Language and any frameworks detected. DO NOT ADD TECHNOLOGIES NOT IN THE DETECTED STACK)
 6. Architecture (describe based on detected stack)
-7. Installation & Setup
+7. Installation & Setup (Ensure steps exactly match the primary language and tech stack. E.g., don't provide python pip steps for a Go or JS repository unless Python is in the tech stack)
 8. Environment Variables (table format if detected)
 9. Usage / Quick Start
 10. API Endpoints (if backend detected)

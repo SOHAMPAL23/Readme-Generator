@@ -30,7 +30,8 @@ RUN apk add --no-cache ca-certificates tzdata
 COPY --from=builder /readmeai /app/readmeai
 
 # Copy static web assets
-COPY web/ /app/web/
+COPY static/ /app/static/
+COPY index.html /app/index.html
 
 # Non-root user for security
 RUN addgroup -g 1001 -S appgroup && \
