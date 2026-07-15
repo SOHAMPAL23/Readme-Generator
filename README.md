@@ -100,17 +100,18 @@ docker compose up --build
 readmeai/
 ├── cmd/
 │   └── main.go                # Entry point, Gin router, middleware
-├── internal/
+├── core/
 │   ├── github/
 │   │   ├── client.go          # GitHub API client (Resty)
 │   │   ├── parser.go          # Response parser, health scoring
 │   │   └── analyzer.go        # Tech stack detection from file tree
 │   ├── ai/
-│   │   ├── generator.go       # OpenAI API client
+│   │   ├── generator.go       # AI client (OpenAI + Groq fallback)
 │   │   └── prompts.go         # 4 style-specific prompt templates
 │   ├── handlers/
 │   │   ├── generate.go        # POST /api/generate
-│   │   └── repository.go      # GET /api/repository
+│   │   ├── repository.go      # GET /api/repository
+│   │   └── handlers.go        # Handler utilities
 │   ├── services/
 │   │   └── readme_service.go  # Orchestration layer
 │   ├── models/
@@ -119,14 +120,17 @@ readmeai/
 │   └── utils/
 │       ├── validator.go        # GitHub URL validation
 │       └── markdown.go         # Markdown helpers
-├── web/
-│   ├── templates/index.html   # SPA shell
-│   └── static/
-│       ├── css/style.css      # Full design system (dark/light)
-│       └── js/app.js          # Vanilla JS SPA logic
+├── static/
+│   ├── css/
+│   │   └── style.css          # Full design system (dark/light)
+│   └── js/
+│       └── app.js             # Vanilla JS SPA logic
+├── index.html                 # SPA shell
 ├── Dockerfile                 # Multi-stage build
 ├── docker-compose.yml
-└── .env.example
+├── .env.example
+├── go.mod
+└── go.sum
 ```
 
 ---

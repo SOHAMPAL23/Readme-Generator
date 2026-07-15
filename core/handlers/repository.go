@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"readmeai/core/models"
@@ -31,9 +32,9 @@ func (h *RepositoryHandler) Handle(c *gin.Context) {
 	resp, err := h.svc.GetRepoMeta(repoURL)
 	if err != nil {
 		statusCode := http.StatusInternalServerError
-		if contains(err.Error(), "not found") || contains(err.Error(), "invalid URL") {
+		if strings.Contains(err.Error(), "not found") || strings.Contains(err.Error(), "invalid URL") {
 			statusCode = http.StatusBadRequest
-		} else if contains(err.Error(), "rate limit") {
+		} else if strings.Contains(err.Error(), "rate limit") {
 			statusCode = http.StatusTooManyRequests
 		}
 		c.JSON(statusCode, models.ErrorResponse{
