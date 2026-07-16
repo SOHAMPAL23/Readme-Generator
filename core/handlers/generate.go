@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"readmeai/core/models"
@@ -42,11 +43,11 @@ func (h *GenerateHandler) Handle(c *gin.Context) {
 		errMsg := err.Error()
 
 		// Map specific errors to appropriate HTTP status codes
-		if contains(errMsg, "not found") || contains(errMsg, "invalid URL") {
+		if strings.Contains(errMsg, "not found") || strings.Contains(errMsg, "invalid URL") {
 			statusCode = http.StatusBadRequest
-		} else if contains(errMsg, "rate limit") {
+		} else if strings.Contains(errMsg, "rate limit") {
 			statusCode = http.StatusTooManyRequests
-		} else if contains(errMsg, "invalid OpenAI API key") || contains(errMsg, "OPENAI_API_KEY") {
+		} else if strings.Contains(errMsg, "invalid OpenAI API key") || strings.Contains(errMsg, "OPENAI_API_KEY") {
 			statusCode = http.StatusServiceUnavailable
 		}
 
@@ -57,17 +58,4 @@ func (h *GenerateHandler) Handle(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, resp)
-}
-
-func contains(s, substr string) bool {
-	return len(s) >= len(substr) && (s == substr || len(s) > 0 && containsStr(s, substr))
-}
-
-func containsStr(s, sub string) bool {
-	for i := 0; i <= len(s)-len(sub); i++ {
-		if s[i:i+len(sub)] == sub {
-			return true
-		}
-	}
-	return false
 }
